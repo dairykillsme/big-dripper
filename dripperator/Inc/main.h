@@ -66,6 +66,14 @@ void Error_Handler(void);
 #define RS485_DRIVE_EN_GPIO_Port GPIOA
 #define LED_BLUE_Pin GPIO_PIN_5
 #define LED_BLUE_GPIO_Port GPIOA
+#define ADDR_0_Pin GPIO_PIN_4
+#define ADDR_0_GPIO_Port GPIOB
+#define ADDR_1_Pin GPIO_PIN_5
+#define ADDR_1_GPIO_Port GPIOB
+#define ADDR_2_Pin GPIO_PIN_6
+#define ADDR_2_GPIO_Port GPIOB
+#define ADDR_3_Pin GPIO_PIN_7
+#define ADDR_3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
