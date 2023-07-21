@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/formlabs_logo2.png"
+    />
+    <title>The Big Dripper</title>
+  </head>
+  <body>
+    <h1>The Big Dripper</h1>
+    <img src="static/images/big-dipper.png" alt="" />
+
+    <form method="POST" action="/success" enctype="multipart/form-data">
+      <label for="imgInp" class="wrap custom-file-upload"
+        ><input accept="image/*" type="file" name="file" id="imgInp" />Upload
+        file</label
+      >
+      <br />
+      <img id="blah" src="/static/images/formlabs_logo.png" />
+      <br />
+      <label for="submitButton" class="wrap submit-button" id="ehh">
+        <input type="submit" value="Upload" id="meh"
+      /></label>
+    </form>
+    <div class="footer-container">
+      <div class="footer-contents">
+        <p>&copy; 2023 Formlabs Hackathon Team:</p>
+        <p>
+          Katie, Winnie, George, Zach, Nick, Alexa, Jonathon, Joseph, and Mary
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    let submitButton = document.getElementById("meh");
+    submitButton.disabled = true;
+
+    imgInp.onchange = (evt) => {
+      const [file] = imgInp.files;
+      if (file) {
+        blah.src = URL.createObjectURL(file);
+        submitButton.disabled = false;
+      }
+    };
+  </script>
+</html>
