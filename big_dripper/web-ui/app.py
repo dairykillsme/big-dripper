@@ -1,8 +1,15 @@
+import io
 from distutils.log import debug
 from fileinput import filename
+
+import PIL.ImageQt
 from flask import *
 import os
+from pathlib import Path, PurePath
+
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -19,8 +26,15 @@ def main():
 def success():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(os.path.join(app.instance_path,
-               'uploaded_images', secure_filename(f.filename)))
+        palette_image = Image.new('P', (1, 1))  # tiny cuz we don't need any image data
+        palette_image.putpalette([255, 255, 255] + [0, 0, 0] * 255)
+        black_and_white = Image.open(io.BytesIO(f.read()))\
+            .resize((50, 30))\
+            .convert('RGB')\
+            .quantize(palette=palette_image, dither=Image.NONE)
+
+        path = Path(app.instance_path, 'uploaded_images', secure_filename(f.filename)).with_suffix(".bmp")
+        black_and_white.save(path)
         return render_template("success.html", name=f.filename)
 
 
