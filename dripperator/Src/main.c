@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "dripperator/blinky.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,7 +99,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    update_blinky();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
