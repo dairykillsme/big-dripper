@@ -43,11 +43,11 @@ def img_to_arr(path):
 
     data = np.invert(np.asarray(im))
 
-    print(image_mode, image_size)
-    print(image_info)
+    #print(image_mode, image_size)
+    #print(image_info)
 
-    print(type(data))
-    print(data.shape)
+    #print(type(data))
+    #print(data.shape)
 
     data = np.flip(data)
 
@@ -57,7 +57,6 @@ def img_to_arr(path):
 
 
 def bin_str_to_hex(bstr):
-    print(bstr)
 
     return '%0*X' % ((len(bstr) + 3) // 4, int(bstr, 2))
 
@@ -92,7 +91,6 @@ def success():
         path = Path(uploaded_images_path, secure_filename(f.filename)).with_suffix(".bmp")
         black_and_white.save(path)
 
-        print(path)
         data = img_to_arr(path)
         dripperator_commands = arr_to_dripperator(data)
 
