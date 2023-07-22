@@ -125,3 +125,19 @@ input[type="submit"]:hover,
   align-items: center;
   justify-content: center;
 }
+
+.success-text {
+  display: flex;
+  padding: 40px;
+}
+
+#blahblah {
+  padding: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: none;
+  margin-right: 40px;
+}
+
+.upload-stuff {
+  display: flex;
+}

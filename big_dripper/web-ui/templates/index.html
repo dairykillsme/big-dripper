@@ -13,13 +13,30 @@
   </head>
   <body>
     <h1>The Big Dripper</h1>
-    <img src="static/images/big-dipper.png" alt="" />
+
+    <img src="static/images/big-dipper.png" alt="" name="words" />
+
+    <form method="POST" action="/successText" enctype="multipart/form-data">
+      <h2>Want to display some text on the Big Dripper?</h2>
+      <div class="success-text">
+        <input
+          type="text"
+          name="text"
+          id="blahblah"
+          placeholder="Enter text:"
+          maxlength="11"
+        />
+        <input type="submit" id="bt" value="Submit" />
+      </div>
+    </form>
 
     <form method="POST" action="/success" enctype="multipart/form-data">
+      <h2>Want to send an image to the Big Dripper?</h2>
       <label for="imgInp" class="wrap custom-file-upload"
-        ><input accept="image/*" type="file" name="file" id="imgInp" />Upload
+        ><input accept="image/*" type="file" name="file" id="imgInp" />Choose
         file</label
       >
+
       <br />
       <img id="blah" src="/static/images/formlabs_logo.png" />
       <br />
@@ -27,11 +44,18 @@
         <input type="submit" value="Upload" id="meh"
       /></label>
     </form>
+
+    <div>
+      <h2>Choose an image to display from the Big Dipper Library:</h2>
+      <!-- <img src="../../bitmap_images/formlabs.bmp" />
+      <img src="../../bitmap_images/hello world.bmp" /> -->
+    </div>
+
     <div class="footer-container">
       <div class="footer-contents">
         <p>&copy; 2023 Formlabs Hackathon Team:</p>
         <p>
-          Katie, Winnie, George, Zach, Nick, Alexa, Jonathon, Joseph, and Mary
+          Katie, Winnie, George, Zach, Nick, Alexa, Jonathan, Joseph, and Mary
         </p>
       </div>
     </div>

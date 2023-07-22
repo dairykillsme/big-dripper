@@ -37,6 +37,15 @@ def success():
         black_and_white.save(path)
         return render_template("success.html", name=f.filename)
 
+@app.route('/successText', methods=['POST'])
+def successText():
+    f = request.form.get("text")
+    document_path = f"{os.getcwd()}/instance/uploaded_text/{f}.txt"
+    if request.method == 'POST':
+       with open(document_path, "w") as file:
+           file.write(f)
+       return render_template("successText.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
