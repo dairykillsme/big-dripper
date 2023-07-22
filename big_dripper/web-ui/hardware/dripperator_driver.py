@@ -38,7 +38,7 @@ class DripperatorDriver():
     def __send_solenoid_states(self, address: int, solenoid_states: int):
         data_to_send = [
             self.__encode_header(False, address),
-            solenoid_states,
+            int('{:08b}'.format(solenoid_states)[::-1], 2),
         ]
         self.serial_port.write(bytes(data_to_send))
         
