@@ -27,7 +27,9 @@ uploaded_images_path.mkdir(exist_ok=True)
 all_off = bytes.fromhex('000000000000')
 def arr_to_dripperator(arr):
     dripperator_commands = []
-    arr = arr.astype(int)
+    try:
+        arr = arr.astype(int)
+
     #arr = np.flip(arr)
     for row in arr:
         r = ""
