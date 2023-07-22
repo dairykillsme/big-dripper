@@ -17,3 +17,20 @@ pip install -r linux/python/requirements.txt
 ```
 
 Then point your development enviroment to venv.
+
+## How to talk to a driperator
+First, configure the DIP switches of the dripperator boards so they are in ascending address order from left to right starting at zero.
+
+### As a library
+```py
+from hardware.dripperator_driver import DripperatorDriver
+dripperator = DripperatorDriver("/dev/serial0", 17, your_num_driperators_here)
+dripperator.display_row(bytes.fromhex("00"))
+```
+
+### From interactive python on big dripper
+```bash
+cd ~/big_dripper
+python -i hardware/dripperator_driver.py
+>>> dripperator.dripperator.display_row(bytes.fromhex("00"))
+```
