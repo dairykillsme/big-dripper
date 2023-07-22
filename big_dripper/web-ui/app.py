@@ -38,6 +38,27 @@ def arr_to_dripperator(arr):
     return dripperator_commands
 
 
+def back_and_forth():
+    arr = []
+    for row in range(48):
+        rw = []
+        for i in range(48):
+            if row - i <= 3 and row - i >= 0:
+                rw.append(1)
+            else:
+                rw.append(0)
+        arr.append(rw)
+
+    back = np.flip(arr, 0)
+    for row in back:
+        rw = []
+        for px in row:
+            rw.append(px)
+        arr.append(rw)
+
+    return arr
+
+
 def img_to_arr(path):
     im = Image.open(path)
     image_size = im.size
@@ -177,6 +198,14 @@ def successClock():
             dripperator.display_row(drip)
             print_row(drip)
             time.sleep(drip_interval)
+        arr = back_and_forth()
+        for i in range(50):
+            dripperator_commands = arr_to_dripperator(arr)
+            for drip in dripperator_commands:
+                dripperator.display_row(drip)
+                print_row(drip)
+                time.sleep(drip_interval)
+
 
         return render_template("index.html")
 
