@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from PIL import Image, ImageDraw, ImageFont
 import time
+import datetime
 import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
@@ -128,6 +129,46 @@ def successText():
         print_row(all_off)
 
         return render_template("successText.html")
+
+@app.route('/successLogo', methods=['POST'])
+def successLogo():
+    if request.method == 'POST':
+        data = img_to_arr(os.path.abspath(os.path.join(os.path.dirname( __file__ ), 'formlabs_logo_48_px_monochrome.bmp')))
+        dripperator_commands = arr_to_dripperator(data)
+
+        for drip in dripperator_commands:
+            dripperator.display_row(drip)
+            print_row(drip)
+            time.sleep(0.01)
+
+        return render_template("successLogo.html")
+
+@app.route('/successClock', methods=['POST'])
+def successClock():
+    if request.method == 'POST':
+        current_time = datetime.datetime.now()
+        hour = current_time.hour
+        minute = current_time.minute
+        current_time_string = (f"{hour}:{minute}")
+        print(current_time_string)
+
+        font = ImageFont.truetype(os.path.abspath(os.path.join(os.path.dirname( __file__ ), 'static/fonts/Asai-Analogue.ttf')), 30)
+        text = request.form.get(current_time_string)
+        blank_canvas = Image.open(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'bitmap_images/blank_canvas.bmp')))
+        I1 = ImageDraw.Draw(blank_canvas)
+        I1.text((1, 0), current_time_string, font=font)
+
+        path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/time.bmp'))
+        blank_canvas.save(path)
+        data = img_to_arr(path)
+        dripperator_commands = arr_to_dripperator(data)
+
+        for drip in dripperator_commands:
+            dripperator.display_row(drip)
+            print_row(drip)
+            time.sleep(0.01)
+
+        return render_template("successClock.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

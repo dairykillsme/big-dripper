@@ -11,6 +11,7 @@ h1 {
 
 img {
   width: 40%;
+  margin: 5%;
 }
 
 a {
@@ -113,11 +114,17 @@ form {
 }
 
 input[type="submit"]:hover,
-.custom-file-upload:hover {
+.custom-file-upload:hover,
+.submit-button:hover {
   background-color: #26a8f3;
   box-shadow: 0px 15px 20px rgba(38, 168, 243, 0.4);
   color: #fff;
   transform: translateY(-7px);
+}
+
+.submit-button {
+  font-size: 10px;
+  margin: 10px 35px;
 }
 
 .wrap {
@@ -139,5 +146,9 @@ input[type="submit"]:hover,
 }
 
 .upload-stuff {
+  display: flex;
+}
+
+.buttons {
   display: flex;
 }
