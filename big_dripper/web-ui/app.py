@@ -16,7 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
-drip_interval = 0.01
+drip_interval = 0.0125
 
 app = Flask(__name__)
 
@@ -27,7 +27,7 @@ uploaded_images_path.mkdir(exist_ok=True)
 all_off = bytes.fromhex('000000000000')
 def arr_to_dripperator(arr):
     dripperator_commands = []
-    arr = np.flip(arr).astype(int)
+    arr = arr.astype(int)
     for row in arr:
         r = ""
         for px in row:
