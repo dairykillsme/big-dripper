@@ -36,7 +36,7 @@ def success():
         palette_image = Image.new('P', (1, 1))  # tiny cuz we don't need any image data
         palette_image.putpalette([255, 255, 255] + [0, 0, 0] * 255)
         black_and_white = Image.open(io.BytesIO(f.read()))\
-            .resize((50, 30))\
+            .resize((48, 30))\
             .convert('RGB')\
             .quantize(palette=palette_image, dither=Image.NONE)
 
