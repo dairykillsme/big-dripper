@@ -74,7 +74,6 @@ communcator_config_t communicator_config = {
 void driperator_init() {
     for (size_t i = 0; i < NUM_SOLENOIDS; i++) {
         solenoids[i] = solenoid_init(solenoid_configs[i]);
-        solenoid_write_output(&solenoids[i], GPIO_PIN_SET);
     }
     communicator_1 = communicator_init(communicator_config);
 }
