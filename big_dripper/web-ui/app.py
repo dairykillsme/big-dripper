@@ -123,6 +123,8 @@ def success():
 
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
+                time.sleep(drip_interval)
+                dripperator.display_row(all_off)
                 print_row(drip)
                 time.sleep(drip_interval)
 
@@ -152,6 +154,8 @@ def successText():
 
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
+                time.sleep(drip_interval)
+                dripperator.display_row(all_off)
                 print_row(drip)
                 time.sleep(drip_interval)
 
@@ -170,6 +174,8 @@ def successLogo():
 
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
+                time.sleep(drip_interval)
+                dripperator.display_row(all_off)
                 print_row(drip)
                 time.sleep(drip_interval)
 
@@ -201,6 +207,8 @@ def successClock():
         for i in range(10):
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
+                time.sleep(drip_interval)
+                dripperator.display_row(all_off)
                 print_row(drip)
                 time.sleep(drip_interval)
         arr = np.array(back_and_forth())
@@ -209,6 +217,8 @@ def successClock():
         for i in range(5):
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
+                time.sleep(drip_interval)
+                dripperator.display_row(all_off)
                 print_row(drip)
                 time.sleep(drip_interval)
 
