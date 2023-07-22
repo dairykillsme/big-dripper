@@ -206,7 +206,7 @@ def successClock():
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
                 print_row(drip)
-                time.sleep(drip_interval)
+                time.sleep(0.1)
 
 
         return render_template("index.html")
