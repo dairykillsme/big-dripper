@@ -28,6 +28,7 @@ all_off = bytes.fromhex('000000000000')
 def arr_to_dripperator(arr):
     dripperator_commands = []
     arr = arr.astype(int)
+    #arr = np.flip(arr)
     for row in arr:
         r = ""
         for px in row:
@@ -51,7 +52,7 @@ def img_to_arr(path):
     #print(type(data))
     #print(data.shape)
 
-    data = np.flip(data)
+    #data = np.flip(data)
 
     im.close()
 
