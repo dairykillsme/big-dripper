@@ -27,8 +27,7 @@ uploaded_images_path.mkdir(exist_ok=True)
 all_off = bytes.fromhex('000000000000')
 def arr_to_dripperator(arr):
     dripperator_commands = []
-    try:
-        arr = arr.astype(int)
+    arr = arr.astype(int)
 
     #arr = np.flip(arr)
     for row in arr:
@@ -46,9 +45,9 @@ def back_and_forth():
         rw = []
         for i in range(48):
             if row - i <= 3 and row - i >= 0:
-                rw.append(1)
+                rw.append(True)
             else:
-                rw.append(0)
+                rw.append(False)
         arr.append(rw)
 
     back = np.flip(arr, 0)
