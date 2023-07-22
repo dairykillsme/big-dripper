@@ -90,6 +90,7 @@ def success():
         path = Path(uploaded_images_path, secure_filename(f.filename)).with_suffix(".bmp")
         black_and_white.save(path)
 
+        print(path)
         data = img_to_arr(path)
         dripperator_commands = arr_to_dripperator(data)
 
