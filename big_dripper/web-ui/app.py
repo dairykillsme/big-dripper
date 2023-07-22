@@ -22,7 +22,7 @@ app = Flask(__name__)
 uploaded_images_path: Path = Path(app.instance_path, 'uploaded_images')
 uploaded_images_path.mkdir(exist_ok=True)
 
-
+all_off = bytes.fromhex(0x000000000000)
 def arr_to_dripperator(arr):
     dripperator_commands = []
     arr = np.flip(arr).astype(int)
@@ -97,7 +97,9 @@ def success():
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
-            time.sleep(0.01)
+            time.sleep(0.1)
+
+        driperator.display_row(all_off)
         return render_template("success.html", name=f.filename)
 
 
@@ -118,7 +120,9 @@ def successText():
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
-            time.sleep(0.01)
+            time.sleep(0.1)
+
+        driperator.display_row(all_off)
 
         return render_template("successText.html")
 
