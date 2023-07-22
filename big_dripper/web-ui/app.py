@@ -100,6 +100,8 @@ def success():
             time.sleep(0.1)
 
         dripperator.display_row(all_off)
+        print_row(all_off)
+        
         return render_template("success.html", name=f.filename)
 
 
@@ -123,6 +125,7 @@ def successText():
             time.sleep(0.1)
 
         dripperator.display_row(all_off)
+        print_row(all_off)
 
         return render_template("successText.html")
 
