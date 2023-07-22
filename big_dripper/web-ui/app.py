@@ -86,7 +86,8 @@ def success():
         black_and_white = Image.open(io.BytesIO(f.read()))\
             .resize((48, 30))\
             .convert('RGB')\
-            .quantize(palette=palette_image, dither=Image.NONE)
+            .quantize(palette=palette_image, dither=Image.NONE)\
+            .convert('1')
 
         path = Path(uploaded_images_path, secure_filename(f.filename)).with_suffix(".bmp")
         black_and_white.save(path)
