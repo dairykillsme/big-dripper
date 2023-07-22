@@ -4,4 +4,4 @@
 #define BLINKY_GPIO_PORT (LED_GREEN_GPIO_Port)
 #define BLINKY_GPIO_PIN (LED_GREEN_Pin)
 
-int update_blinky();
+void update_blinky();

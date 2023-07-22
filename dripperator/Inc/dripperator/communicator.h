@@ -16,7 +16,7 @@ typedef struct communicator_handle {
     uint8_t address;
     uint8_t solenoid_outputs;
     communicator_state_t state;
-    uint8_t rx_bytes [2];
+    uint8_t rx_bytes [32];
 } communicator_handle_t;
 
 communicator_handle_t communicator_1;
