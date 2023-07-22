@@ -61,6 +61,10 @@ def bin_str_to_hex(bstr):
     return '%0*X' % ((len(bstr) + 3) // 4, int(bstr, 2))
 
 
+def print_row(row):
+    print("".join(["{:0>8}".format(bin(X)[2:])for X in row]))
+
+
 @app.route('/')
 def main():
     uploaded_images = map(lambda path: path.name, uploaded_images_path.glob('*'))
@@ -91,6 +95,7 @@ def success():
 
         for drip in dripperator_commands:
             dripperator.display_row(drip)
+            print_row(drip)
             time.sleep(0.01)
         return render_template("success.html", name=f.filename)
 
@@ -111,6 +116,7 @@ def successText():
 
         for drip in dripperator_commands:
             dripperator.display_row(drip)
+            print_row(drip)
             time.sleep(0.01)
 
         return render_template("successText.html")
