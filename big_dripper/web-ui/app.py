@@ -197,10 +197,12 @@ def successClock():
         data = img_to_arr(path)
         dripperator_commands = arr_to_dripperator(data)
 
-        for drip in dripperator_commands:
-            dripperator.display_row(drip)
-            print_row(drip)
-            time.sleep(drip_interval)
+
+        for i in range(10):
+            for drip in dripperator_commands:
+                dripperator.display_row(drip)
+                print_row(drip)
+                time.sleep(drip_interval)
         arr = np.array(back_and_forth())
         print(arr)
         dripperator_commands = arr_to_dripperator(arr)
