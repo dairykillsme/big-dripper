@@ -202,11 +202,11 @@ def successClock():
         arr = np.array(back_and_forth())
         print(arr)
         dripperator_commands = arr_to_dripperator(arr)
-        for i in range(50):
+        for i in range(5):
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
                 print_row(drip)
-                time.sleep(0.1)
+                time.sleep(drip_interval)
 
 
         return render_template("index.html")
