@@ -57,6 +57,7 @@ def img_to_arr(path):
 
 
 def bin_str_to_hex(bstr):
+    print(bstr)
 
     return '%0*X' % ((len(bstr) + 3) // 4, int(bstr, 2))
 
