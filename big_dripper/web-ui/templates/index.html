@@ -47,8 +47,11 @@
 
     <div>
       <h2>Choose an image to display from the Big Dipper Library:</h2>
-      <!-- <img src="../../bitmap_images/formlabs.bmp" />
-      <img src="../../bitmap_images/hello world.bmp" /> -->
+      <ul>
+        {% for image_filename in uploaded_images %}
+            <img src="{{ url_for('uploaded_images', filename=image_filename) }}" alt="Image">
+        {% endfor %}
+      </ul>
     </div>
 
     <div class="footer-container">
