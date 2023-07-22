@@ -22,7 +22,7 @@ app = Flask(__name__)
 uploaded_images_path: Path = Path(app.instance_path, 'uploaded_images')
 uploaded_images_path.mkdir(exist_ok=True)
 
-all_off = bytes.fromhex(0x000000000000)
+all_off = bytes.fromhex('0x000000000000')
 def arr_to_dripperator(arr):
     dripperator_commands = []
     arr = np.flip(arr).astype(int)
