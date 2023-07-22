@@ -142,7 +142,7 @@ def successLogo():
             print_row(drip)
             time.sleep(drip_interval)
 
-        return render_template("successLogo.html")
+        return render_template("index.html")
 
 @app.route('/successClock', methods=['POST'])
 def successClock():
@@ -169,7 +169,7 @@ def successClock():
             print_row(drip)
             time.sleep(drip_interval)
 
-        return render_template("successClock.html")
+        return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
