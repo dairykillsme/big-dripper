@@ -16,7 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
-drip_interval = 0.025
+drip_interval = 0.02
 
 app = Flask(__name__)
 
@@ -29,7 +29,7 @@ def arr_to_dripperator(arr):
     dripperator_commands = []
     arr = arr.astype(int)
 
-    #arr = np.flip(arr)
+    arr = np.flip(arr)
     for row in arr:
         r = ""
         for px in row:
