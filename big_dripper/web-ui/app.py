@@ -201,6 +201,7 @@ def successClock():
             print_row(drip)
             time.sleep(drip_interval)
         arr = back_and_forth()
+        print(arr)
         dripperator_commands = arr_to_dripperator(arr)
         for i in range(50):
             for drip in dripperator_commands:
