@@ -193,14 +193,13 @@ def successClock():
         path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/time.bmp'))
         blank_canvas.save(path)
         data = img_to_arr(path)
-        print(data)
         dripperator_commands = arr_to_dripperator(data)
 
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
             time.sleep(drip_interval)
-        arr = back_and_forth()
+        arr = np.array(back_and_forth())
         print(arr)
         dripperator_commands = arr_to_dripperator(arr)
         for i in range(50):
