@@ -43,11 +43,11 @@ def img_to_arr(path):
 
     data = np.invert(np.asarray(im))
 
-    #print(image_mode, image_size)
-    #print(image_info)
+    print(image_mode, image_size)
+    print(image_info)
 
-    #print(type(data))
-    #print(data.shape)
+    print(type(data))
+    print(data.shape)
 
     data = np.flip(data)
 
