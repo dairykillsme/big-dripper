@@ -10,12 +10,55 @@ from pathlib import Path, PurePath
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from PIL import Image, ImageDraw, ImageFont
+import time
+import numpy as np
+
+from hardware.dripperator_driver import DripperatorDriver
+dripperator = DripperatorDriver("/dev/serial0", 17, 6)
 
 app = Flask(__name__)
 
 # create the folders when setting up your app
 uploaded_images_path: Path = Path(app.instance_path, 'uploaded_images')
 uploaded_images_path.mkdir(exist_ok=True)
+
+
+def arr_to_driperator(arr):
+    driperator_commands = []
+    arr = np.flip(arr).astype(int)
+    for row in arr:
+        r = ""
+        for px in row:
+            r = r+str(px)
+        driperator_commands.append(bytes.fromhex(bin_str_to_hex(r)))
+
+    return driperator_commands
+
+
+def img_to_arr(path):
+    im = Image.open(path)
+    image_size = im.size
+    image_mode = im.mode
+    image_info = im.info
+
+    data = np.invert(np.asarray(im))
+
+    #print(image_mode, image_size)
+    #print(image_info)
+
+    #print(type(data))
+    #print(data.shape)
+
+    data = np.flip(data)
+
+    im.close()
+
+    return data
+
+
+def bin_str_to_hex(bstr):
+
+    return '%0*X' % ((len(bstr) + 3) // 4, int(bstr, 2))
 
 
 @app.route('/')
@@ -42,25 +85,33 @@ def success():
 
         path = Path(uploaded_images_path, secure_filename(f.filename)).with_suffix(".bmp")
         black_and_white.save(path)
+
+        data = img_to_arr(path)
+        driperator_commands = arr_to_driperator(data)
+
+        for drip in driperator_commands:
+            dripperator.display_row(drip)
+            time.sleep(0.01)
         return render_template("success.html", name=f.filename)
 
 
 @app.route('/successText', methods=['POST'])
 def successText():
-
     if request.method == 'POST':
         font = ImageFont.truetype(os.path.abspath(os.path.join(os.path.dirname( __file__ ), 'static/fonts/Asai-Analogue.ttf')), 15)
         text = request.form.get("text")
-
-        
-
         blank_canvas = Image.open(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'bitmap_images/blank_canvas.bmp')))
-        print(blank_canvas)
-        
         I1 = ImageDraw.Draw(blank_canvas)
         I1.text((1, 10), text, font=font)
 
-        blank_canvas.save(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/{text}.bmp')))    
+        path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/{text}.bmp'))
+        blank_canvas.save(path)
+        data = img_to_arr(path)
+        driperator_commands = arr_to_driperator(data)
+
+        for drip in driperator_commands:
+            dripperator.display_row(drip)
+            time.sleep(0.01)
 
         return render_template("successText.html")
 
