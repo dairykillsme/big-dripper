@@ -108,7 +108,7 @@ def successText():
         text = request.form.get("text")
         blank_canvas = Image.open(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'bitmap_images/blank_canvas.bmp')))
         I1 = ImageDraw.Draw(blank_canvas)
-        I1.text((1, 10), text, font=font)
+        I1.text((1, 7), text, font=font)
 
         path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/{text}.bmp'))
         blank_canvas.save(path)
