@@ -97,10 +97,14 @@ def success():
         data = img_to_arr(path)
         dripperator_commands = arr_to_dripperator(data)
 
-        for drip in dripperator_commands:
-            dripperator.display_row(drip)
-            print_row(drip)
-            time.sleep(drip_interval)
+        for i in range (5):
+
+            for drip in dripperator_commands:
+                dripperator.display_row(drip)
+                print_row(drip)
+                time.sleep(drip_interval)
+
+            time.sleep(0.25)
 
         dripperator.display_row(all_off)
         print_row(all_off)
@@ -138,10 +142,14 @@ def successLogo():
         data = img_to_arr(os.path.abspath(os.path.join(os.path.dirname( __file__ ), 'formlabs_logo_48_px_monochrome.bmp')))
         dripperator_commands = arr_to_dripperator(data)
 
-        for drip in dripperator_commands:
-            dripperator.display_row(drip)
-            print_row(drip)
-            time.sleep(drip_interval)
+        for i in range(5):
+
+            for drip in dripperator_commands:
+                dripperator.display_row(drip)
+                print_row(drip)
+                time.sleep(drip_interval)
+
+            time.sleep(0.25)
 
         return render_template("index.html")
 
