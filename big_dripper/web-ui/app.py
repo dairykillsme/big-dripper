@@ -8,7 +8,8 @@ import os
 from pathlib import Path, PurePath
 
 from werkzeug.utils import secure_filename
-from PIL import Image
+from werkzeug.datastructures import FileStorage
+from PIL import Image, ImageDraw, ImageFont
 
 app = Flask(__name__)
 
@@ -45,14 +46,23 @@ def success():
 
 
 @app.route('/successText', methods=['POST'])
-def success_text():
-    f = request.form.get("text")
-    document_path = f"{os.getcwd()}/instance/uploaded_text/{f}.txt"
-    if request.method == 'POST':
-        with open(document_path, "w") as file:
-            file.write(f)
-        return render_template("successText.html")
+def successText():
 
+    if request.method == 'POST':
+        font = ImageFont.truetype(os.path.abspath(os.path.join(os.path.dirname( __file__ ), 'static/fonts/Asai-Analogue.ttf')), 15)
+        text = request.form.get("text")
+
+        
+
+        blank_canvas = Image.open(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'bitmap_images/blank_canvas.bmp')))
+        print(blank_canvas)
+        
+        I1 = ImageDraw.Draw(blank_canvas)
+        I1.text((1, 10), text, font=font)
+
+        blank_canvas.save(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/{text}.bmp')))    
+
+        return render_template("successText.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

@@ -24,7 +24,7 @@
           name="text"
           id="blahblah"
           placeholder="Enter text:"
-          maxlength="11"
+          maxlength="10"
         />
         <input type="submit" id="bt" value="Submit" />
       </div>
@@ -45,14 +45,20 @@
       /></label>
     </form>
 
-    <div>
+    <!-- <div>
       <h2>Choose an image to display from the Big Dipper Library:</h2>
+<<<<<<< HEAD
       <ul>
         {% for image_filename in uploaded_images %}
             <img src="{{ url_for('uploaded_images', filename=image_filename) }}" alt="Image">
         {% endfor %}
       </ul>
     </div>
+=======
+      <img src="../../bitmap_images/formlabs.bmp" />
+      <img src="../../bitmap_images/hello world.bmp" />
+    </div> -->
+>>>>>>> d6b4e66 (text to bmp success)
 
     <div class="footer-container">
       <div class="footer-contents">
