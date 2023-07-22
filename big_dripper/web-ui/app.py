@@ -16,7 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
-drip_interval = 0.015
+drip_interval = 0.02
 
 app = Flask(__name__)
 
