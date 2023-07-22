@@ -16,6 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
+drip_interval = 0.1
 
 app = Flask(__name__)
 
@@ -98,7 +99,7 @@ def success():
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
-            time.sleep(0.1)
+            time.sleep(drip_interval)
 
         dripperator.display_row(all_off)
         print_row(all_off)
@@ -123,7 +124,7 @@ def successText():
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
-            time.sleep(0.1)
+            time.sleep(drip_interval)
 
         dripperator.display_row(all_off)
         print_row(all_off)
@@ -139,7 +140,7 @@ def successLogo():
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
-            time.sleep(0.01)
+            time.sleep(drip_interval)
 
         return render_template("successLogo.html")
 
@@ -166,7 +167,7 @@ def successClock():
         for drip in dripperator_commands:
             dripperator.display_row(drip)
             print_row(drip)
-            time.sleep(0.01)
+            time.sleep(drip_interval)
 
         return render_template("successClock.html")
 
