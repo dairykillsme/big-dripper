@@ -99,7 +99,7 @@ def success():
             print_row(drip)
             time.sleep(0.1)
 
-        driperator.display_row(all_off)
+        dripperator.display_row(all_off)
         return render_template("success.html", name=f.filename)
 
 
