@@ -16,7 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
-drip_interval = 0.0175
+drip_interval = 0.015
 
 app = Flask(__name__)
 
@@ -148,10 +148,12 @@ def successText():
         data = img_to_arr(path)
         dripperator_commands = arr_to_dripperator(data)
 
-        for drip in dripperator_commands:
-            dripperator.display_row(drip)
-            print_row(drip)
-            time.sleep(drip_interval)
+        for i in range(5):
+
+            for drip in dripperator_commands:
+                dripperator.display_row(drip)
+                print_row(drip)
+                time.sleep(drip_interval)
 
         dripperator.display_row(all_off)
         print_row(all_off)
