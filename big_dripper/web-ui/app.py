@@ -23,16 +23,16 @@ uploaded_images_path: Path = Path(app.instance_path, 'uploaded_images')
 uploaded_images_path.mkdir(exist_ok=True)
 
 
-def arr_to_driperator(arr):
-    driperator_commands = []
+def arr_to_dripperator(arr):
+    dripperator_commands = []
     arr = np.flip(arr).astype(int)
     for row in arr:
         r = ""
         for px in row:
             r = r+str(px)
-        driperator_commands.append(bytes.fromhex(bin_str_to_hex(r)))
+        dripperator_commands.append(bytes.fromhex(bin_str_to_hex(r)))
 
-    return driperator_commands
+    return dripperator_commands
 
 
 def img_to_arr(path):
@@ -87,9 +87,9 @@ def success():
         black_and_white.save(path)
 
         data = img_to_arr(path)
-        driperator_commands = arr_to_driperator(data)
+        dripperator_commands = arr_to_dripperator(data)
 
-        for drip in driperator_commands:
+        for drip in dripperator_commands:
             dripperator.display_row(drip)
             time.sleep(0.01)
         return render_template("success.html", name=f.filename)
@@ -107,9 +107,9 @@ def successText():
         path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', f'bitmap_images/{text}.bmp'))
         blank_canvas.save(path)
         data = img_to_arr(path)
-        driperator_commands = arr_to_driperator(data)
+        dripperator_commands = arr_to_dripperator(data)
 
-        for drip in driperator_commands:
+        for drip in dripperator_commands:
             dripperator.display_row(drip)
             time.sleep(0.01)
 
