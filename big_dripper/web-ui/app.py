@@ -16,7 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
-drip_interval = 0.01
+drip_interval = 0.075
 
 app = Flask(__name__)
 
@@ -48,6 +48,8 @@ def back_and_forth():
                 rw.append(True)
             else:
                 rw.append(False)
+
+        rw = rw + np.flip(rw)
         arr.append(rw)
 
     back = np.flip(arr, 0)
