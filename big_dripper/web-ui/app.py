@@ -98,6 +98,7 @@ def main():
     return render_template("index.html", uploaded_images=uploaded_images)
 
 
+
 @app.route('/uploaded_images/<path:filename>')
 def uploaded_images(filename):
     return send_from_directory(uploaded_images_path, filename)
@@ -228,6 +229,27 @@ def successClock():
 
 
         return render_template("index.html")
+
+@app.route('/successPattern', methods=['GET', 'POST'])
+def successPattern():
+    if request.method == 'POST':
+        pattern = request.form.getlist('pattern')
+        indices = [False]*48
+        for p in pattern:
+            indices[int(p)-1] = True
+        rw = []
+        arr = []
+        for i in range(48):
+            if indices[i]:
+                rw.append(True)
+            else:
+                rw.append(False)
+
+        arr.append(rw)
+        dripperator_command = arr_to_dripperator(np.array(arr))
+        print(dripperator_command)
+        dripperator.display_row(dripperator_command)
+        return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

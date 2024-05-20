@@ -138,6 +138,10 @@ input[type="submit"]:hover,
   padding: 40px;
 }
 
+.pattern-box {
+  display: flex;
+}
+
 #blahblah {
   padding: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
