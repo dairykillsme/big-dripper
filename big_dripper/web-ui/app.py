@@ -16,7 +16,7 @@ import numpy as np
 
 from hardware.dripperator_driver import DripperatorDriver
 dripperator = DripperatorDriver("/dev/serial0", 17, 6)
-drip_interval = 0.0075
+drip_interval = 0.002
 
 app = Flask(__name__)
 
@@ -110,12 +110,12 @@ def success():
         f = request.files['file']
         palette_image = Image.new('P', (1, 1))  # tiny cuz we don't need any image data
         palette_image.putpalette([255, 255, 255] + [0, 0, 0] * 255)
-        black_and_white = Image.open(io.BytesIO(f.read()))\
-            .resize((48, 30))\
+        raw_image = Image.open(io.BytesIO(f.read()))
+        # Scale only in x, y of original image should be maintained
+        black_and_white = raw_image.resize((48, max(raw_image.size[1], 38)))\
             .convert('RGB')\
             .quantize(palette=palette_image, dither=Image.NONE)\
             .convert('1')
-
         path = Path(uploaded_images_path, secure_filename(f.filename)).with_suffix(".bmp")
         black_and_white.save(path)
 
@@ -123,15 +123,12 @@ def success():
         dripperator_commands = arr_to_dripperator(data)
 
         for i in range (5):
-
             for drip in dripperator_commands:
                 dripperator.display_row(drip)
                 time.sleep(drip_interval)
                 dripperator.display_row(all_off)
                 print_row(drip)
                 time.sleep(drip_interval)
-
-            time.sleep(0.25)
 
         dripperator.display_row(all_off)
         print_row(all_off)

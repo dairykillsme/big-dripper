@@ -1,6 +1,15 @@
 # big-dripper
 Water curtain display controller and MCU code
 
+# Running the application
+1. SSH into the big dripper. (`user:` pi, `pw:` rapsberry)
+2. Run the following
+```bash
+cd ~/big-dripper/big_dripper/web-ui/
+python app.py
+```
+4. You can now connect to the webui from the same network at [http://192.168.YOUR.IP:5000](http://192.168.YOUR.IP:5000)
+
 # Organization
 - `/big_dripper/` - All application code for linux rpi application lives  (probably python application)
 - `requirements.txt` - All python requirements should be tracked here
