@@ -245,7 +245,7 @@ def successPattern():
         arr.append(rw)
         dripperator_command = arr_to_dripperator(np.array(arr))
         print(dripperator_command)
-        dripperator.display_row(dripperator_command)
+        dripperator.display_row(dripperator_command[0])
         return render_template('index.html')
 
 if __name__ == '__main__':
